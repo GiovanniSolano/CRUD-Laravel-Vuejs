@@ -35,7 +35,15 @@ class ApiDatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos = new DatosP;
+
+        $datos->nombre = $request->nombre;
+        $datos->posicion = $request->posicion;
+        $datos->salario = $request->salario;
+
+        $datos->save();
+
+        return 'Datos guardados correctamente';
     }
 
     /**
@@ -67,9 +75,17 @@ class ApiDatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DatosP $datosp)
     {
-        //
+        $datosp->nombre = $request->nombre;
+        $datosp->posicion = $request->posicion;
+        $datosp->salario = $request->salario;
+
+        $datosp->save();
+
+        return 'Datos editados correctamente';
+
+
     }
 
     /**
@@ -78,8 +94,10 @@ class ApiDatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(DatosP $datosp)
     {
-        //
+        $datosp->delete();
+        return 'Registro emilnado correctamente';
+        
     }
 }
